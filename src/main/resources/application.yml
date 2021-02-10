@@ -1,0 +1,22 @@
+server:
+  port: 8080
+ 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8083/eureka 
+
+spring:
+  application:
+    name: zoixe-gateway-service
+  cloud:
+    gateway:
+      routes:
+      - id: zoixe-micro-user
+        uri: lb://zoixe-micro-user
+        predicates:
+        - Path=/zoixe-micro-user/**
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true    
